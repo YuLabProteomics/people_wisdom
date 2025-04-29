@@ -110,7 +110,6 @@ git push -u origin main  # or whatever your branch is
 `.gitignore` 推荐内容：
 
 ```
-.DS_Store
 __pycache__/
 .ipynb_checkpoints/
 *.pyc

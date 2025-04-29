@@ -98,7 +98,6 @@ You will not be prompted for username or password—SSH will handle authenticati
 Example contents for a clean repository:
 
 ```
-.DS_Store
 __pycache__/
 .ipynb_checkpoints/
 *.pyc

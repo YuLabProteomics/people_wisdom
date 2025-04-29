@@ -51,9 +51,13 @@ nano ~/.ssh/config
 Host github.com
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_ed25519_custom
+  IdentityFile ~/.ssh/id_ed25519_yulab
   IdentitiesOnly yes
+  AddKeysToAgent yes
+  UseKeychain yes
 ```
+
+然后运行一次：ssh-add --apple-use-keychain ~/.ssh/id_ed25519_yulab
 
 保存退出：`Ctrl + X` ➜ `Y` ➜ `Enter`
 

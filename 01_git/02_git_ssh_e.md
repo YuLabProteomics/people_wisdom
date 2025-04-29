@@ -47,9 +47,12 @@ Add the following block:
 Host github.com
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_ed25519_custom
+  IdentityFile ~/.ssh/id_ed25519_yulab
   IdentitiesOnly yes
+  AddKeysToAgent yes
+  UseKeychain yes
 ```
+Then run it once: ssh-add --apple-use-keychain ~/.ssh/id_ed25519_yulab
 
 Save and exit: `Ctrl + X`, then `Y`, then `Enter`
 

@@ -113,6 +113,34 @@ If it says aarch64, you are using arm64.
 If it says i686 or i386, you are using i386.
 
 
+### 🔄 **When to Choose Root vs. User?**
+| 📝 **Operation Type**                 | 🛡️ **Permission Level** | 💡 **Reason**                                                        |
+|--------------------------------------|-------------------------|----------------------------------------------------------------------|
+| **System-wide software installation** | `Root (sudo)`          | Needs write access to `/usr/bin/`, `/usr/lib/`, and other system directories. |
+| **R, Docker, Java installations**    | `Root (sudo)`          | These tools manage dependencies and are installed system-wide.       |
+| **Network configuration, firewall settings** | `Root (sudo)`  | Changing network settings or firewall rules requires admin rights.   |
+| **Python/R package installation**    | `User`                 | Use `pip install --user` or `install.packages()` to install locally. |
+| **Editing local configuration files** | `User`                 | Modifying `~/.bashrc`, `~/.profile`, etc., only affects the user space. |
 
+**Summary:**
+- For **system-wide tools** (e.g., R, Docker): → **Root (sudo)**  
+- For **Python/R packages** or **personal configuration**: → **User** 
 
+In that case, I chose Root.
+
+Here is the code to install R according to the website until 05/12/2025:
+```bash
+# update indices
+apt update -qq
+# install two helper packages we need
+apt install --no-install-recommends software-properties-common dirmngr
+# add the signing key (by Michael Rutter) for these repos
+# To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc 
+# Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+# add the repo from CRAN -- lsb_release adjusts to 'noble' or 'jammy' or ... as needed
+add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+# install R itself
+sudo apt install --no-install-recommends r-base
+```
 

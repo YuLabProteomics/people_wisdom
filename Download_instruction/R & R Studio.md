@@ -7,7 +7,7 @@
 **R 4.5 is part of this cran40 repository, which is the most recent release as of April 15, 2025.**
 
 ---
-
+**Recommend!!**
 # 1. Download Micromamba and then create an environment to download R and R studio
 
 ## Why Using a Separate Micromamba Environment for R and RStudio is Better
@@ -47,6 +47,7 @@
 4. **Hard to Rollback**
    - In a global setup, if something breaks, it’s hard to revert. With Micromamba, you can easily roll back.
 
+---
 
 **Code for downloading**
 ```bash
@@ -73,20 +74,20 @@ install.packages("ggplot2")
 install.packages("data.table")
 ```
 
-- Input "68" in the selection
-- Set default CRAN mirrow - MI
+- Set default CRAN mirrow - Duke
 ```bash
-options(repos = c(CRAN = "https://cran.mtu.edu/"))
+options(repos = c(CRAN = "https://archive.linux.duke.edu/cran/"))
 ```
 - Let the setting takes effect permanently.
 ```bash
-cat('options(repos = c(CRAN = "https://cran.mtu.edu/"))\n', 
+cat('options(repos = c(CRAN = "https://archive.linux.duke.edu/cran/"))\n', 
     file = file.path(Sys.getenv("HOME"), ".Rprofile"), 
-    append = TRUE)
+    append = FALSE)
 ```
 
 ---
 
+# Downloading R from the official website
 
 ## Official Website
 
@@ -102,13 +103,14 @@ https://www.r-project.org/
 Since we are in Umass Chan Medical School, MA, the best CRAN mirrors for us would be:
 
 ✅ Top Recommended Mirrors (Closest to Worcester):
-1. MBNI, University of Michigan, Ann Arbor, MI
-https://repo.miserver.it.umich.edu/cran/
-- Very reliable and quite close to Massachusetts.
 
-2. Duke University, Durham, NC
+1. Duke University, Durham, NC
 https://archive.linux.duke.edu/cran/
 - Good infrastructure, fast connection from the East Coast.
+
+2. MBNI, University of Michigan, Ann Arbor, MI
+https://repo.miserver.it.umich.edu/cran/
+- Very reliable and quite close to Massachusetts.
 
 3. Indiana University
 http://ftp.ussg.iu.edu/CRAN/
@@ -225,4 +227,16 @@ add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_relea
 # install R itself
 sudo apt install --no-install-recommends r-base
 ```
+
+---
+
+# 🚀 Pros and Cons Comparison:
+
+| Aspect                   | **Micromamba**             | **APT Installation**         |
+|---------------------------|----------------------------|-----------------------------|
+| **Permission Flexibility** | ✅ User-level, no `sudo` required | ❌ Requires `sudo` permission |
+| **Environment Isolation**  | ✅ Does not affect the global system | ❌ Global installation, may interfere with other programs |
+| **Update Speed**          | ❌ Depends on Conda-Forge updates   | ✅ Updates are synchronized with CRAN releases |
+| **Research & Development Suitability** | ✅ Easily creates and deletes isolated environments | ❌ Uninstallation affects the global environment |
+| **Dependency Management** | ✅ Conda environments automatically manage dependency conflicts | ❌ `apt` may encounter conflicts with other dependencies |
 

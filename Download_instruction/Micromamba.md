@@ -184,7 +184,7 @@ echo "    micromamba deactivate"
 ```
 
 - In the section of downloading Micromamba, check the official website and choose the right curl according to the CPU architecture type.
-- Method of Application:
+- **Method of Application:**
 1. Copy the script above and paste in the editor in the terminal.
 ```
 nano setup_micromamba.sh

@@ -21,116 +21,58 @@
   2. Avoid using the `defaults` channel (Anaconda's official mirror).
 
 ---
+
 # The Tutorial of Downloading Micromamba
 
 # Official Website
 https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html
 
-
-# **Micromamba Installation Guide (Linux Intel (x86_64))**
-
-Follow these steps to install and configure **Micromamba** on your Linux system.
+**Unitil 05/13/2025, the latest version of micromamba is 2.1.1.**
 
 ---
 
-## **Step 1: Download the Latest Version**
-Navigate to your `Downloads` folder and download the latest Micromamba binary:
+# What is `conda-forge`?
+
+`conda-forge` is a **community-driven repository of Conda packages**. It is an alternative to the default `conda` channel, managed by contributors worldwide, who maintain and update software packages for scientific computing, data science, machine learning, bioinformatics, and more.
+
+
+## Why Use `conda-forge` with Micromamba?
+
+When you use `micromamba` to install packages, it looks for these packages in different "channels." The default channel is `defaults`, maintained by Anaconda, Inc., but it is often slower to update and has fewer specialized packages.
+
+### Key Benefits of `conda-forge`:
+1. **Faster Updates**  
+   - Packages on `conda-forge` are updated more frequently than the default `conda` channel.
+   - You get the latest versions of packages, often within days of release.
+
+2. **Wider Variety of Packages**  
+   - Many specialized scientific and bioinformatics tools are only available on `conda-forge`.
+   - Examples include:
+     - `snakemake`: Workflow management
+     - `pyro-ppl`: Probabilistic programming in Python
+     - `scanpy`: Single-cell RNA analysis
+     - `jupyterlab`: Latest version for interactive computing
+
+3. **Better Compatibility**  
+   - `conda-forge` maintains tighter version control, which means dependencies are resolved more smoothly.
+   - Cross-platform compatibility is better, supporting Linux, macOS, and Windows without additional configuration.
+
+4. **Strict Dependency Resolution**  
+   - When you configure `micromamba` to prioritize `conda-forge`, it uses **strict dependency resolution**.  
+   - This avoids version conflicts and ensures that package versions are fully compatible.
+
+## How to Configure `conda-forge` in Micromamba?
+
+- To make `conda-forge` the **default source**, you can configure it once:
+
 ```bash
-cd ~/Downloads
-curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
-````
-
----
-
-## **Step 2: Move the Binary and Set Permissions**
-
-Move `micromamba` to `~/.local/bin` and set execute permissions:
-
-```bash
-mkdir -p ~/.local/bin
-mv ~/Downloads/bin/micromamba ~/.local/bin/
-chmod +x ~/.local/bin/micromamba
+micromamba config append channels conda-forge
+micromamba config set channel_priority strict
 ```
+- This configuration makes sure every time you install packages, they are fetched from `conda-forge` first.
 
 ---
 
-## **Step 3: Add to PATH**
 
-Ensure Micromamba is added to your PATH in `.bashrc`:
-
-```bash
-if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' ~/.bashrc; then
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-fi
-```
-
----
-
-## **Step 4: Initialize Micromamba Shell**
-
-Initialize the shell to enable `micromamba` commands:
-
-```bash
-micromamba shell init -s bash -r ~/.local/micromamba
-```
-
----
-
-## **Step 5: Update Old Paths (if any)**
-
-If there are old paths in `.bashrc`, replace them with the new path:
-
-```bash
-sed -i 's|/home/zixuan_ye/Downloads/bin/micromamba|/home/zixuan_ye/.local/bin/micromamba|g' ~/.bashrc
-```
-
----
-
-## **Step 6: Reload Shell Configuration**
-
-Apply the changes by reloading your shell:
-
-```bash
-source ~/.bashrc
-```
-
----
-
-## **Step 7: Run Shell Hook**
-
-Enable Micromamba shell functionalities:
-
-```bash
-eval "$(micromamba shell hook --shell bash)"
-```
-
----
-
-## **Step 8: Verify Installation**
-
-Check the Micromamba version to confirm installation:
-
-```bash
-micromamba --version
-```
-
----
-
-## **Optional: Create and Activate a Test Environment**
-
-Test the installation by creating and activating a new environment:
-
-```bash
-micromamba create -n test_env python=3.10 -y
-micromamba activate test_env
-```
-
-To deactivate the environment, simply run:
-
-```bash
-micromamba deactivate
-```
-
----
 
 

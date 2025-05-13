@@ -8,7 +8,7 @@
 
 ---
 
-# Download Micromamba and then create an environment to download R and R studio
+# 1. Download Micromamba and then create an environment to download R and R studio
 
 ## Why Using a Separate Micromamba Environment for R and RStudio is Better
 
@@ -47,7 +47,46 @@
 4. **Hard to Rollback**
    - In a global setup, if something breaks, it’s hard to revert. With Micromamba, you can easily roll back.
 
+
+**Code for downloading**
+```bash
+micromamba create -n mldata_env r-base r-essentials 
+
+micromamba activate mldata_env
+```
+
+- R-base: Core r environment.
+- R-essentials: Includes RStudio and some commonly used r packages
+
+**Code for starting**
+```
+R # To start R
+
+rstudio # To use Rstudio
+
+```
+
+**When using R**
+```bash
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("data.table")
+```
+
+- Input "68" in the selection
+- Set default CRAN mirrow - MI
+```bash
+options(repos = c(CRAN = "https://cran.mtu.edu/"))
+```
+- Let the setting takes effect permanently.
+```bash
+cat('options(repos = c(CRAN = "https://cran.mtu.edu/"))\n', 
+    file = file.path(Sys.getenv("HOME"), ".Rprofile"), 
+    append = TRUE)
+```
+
 ---
+
 
 ## Official Website
 

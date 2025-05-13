@@ -63,8 +63,6 @@ micromamba activate mldata_env
 ```
 R # To start R
 
-rstudio # To use Rstudio
-
 ```
 
 **When using R**

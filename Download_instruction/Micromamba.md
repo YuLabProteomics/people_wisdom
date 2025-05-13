@@ -23,86 +23,114 @@
 ---
 # The Tutorial of Downloading Micromamba
 
-## Official Website
+# Official Website
 https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html
 
-## Micromamba Installation: Official vs. Optimized Method (Use Optimized Method)
 
-### 1. Official Method (From website)
+# **Micromamba Installation Guide (Linux Intel (x86_64))**
 
+Follow these steps to install and configure **Micromamba** on your Linux system.
+
+---
+
+## **Step 1: Download the Latest Version**
+Navigate to your `Downloads` folder and download the latest Micromamba binary:
 ```bash
-./bin/micromamba shell init -s bash -r ~/micromamba
-source ~/.bashrc
-````
-
-#### How It Works:
-
-1. Initializes Micromamba and writes configuration to `~/.bashrc`.
-2. Uses `~/micromamba` as the root environment for storing packages and caches.
-3. Runs `source ~/.bashrc` to load changes.
-
-#### Pros:
-
-* Simple and straightforward (just two commands).
-* Officially recommended by Micromamba documentation.
-* Automatically writes to `.bashrc` for persistent activation.
-
-#### Cons:
-
-* Path is hard-coded to `~/Downloads/bin/micromamba`.
-* If you move the binary, it will break the path.
-* Difficult to clean up: You have to manually find and delete `.bashrc` entries.
-* May cause infinite loops if re-initialized multiple times.
-
-
-### 2. Optimized Method (Standardized Path and Cleaner Setup)
-
-```bash
-# Step 1: Download and move to ~/.local/bin
 cd ~/Downloads
 curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+````
 
+---
+
+## **Step 2: Move the Binary and Set Permissions**
+
+Move `micromamba` to `~/.local/bin` and set execute permissions:
+
+```bash
 mkdir -p ~/.local/bin
 mv ~/Downloads/bin/micromamba ~/.local/bin/
 chmod +x ~/.local/bin/micromamba
+```
 
-# Step 2: Update PATH
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+---
+
+## **Step 3: Add to PATH**
+
+Ensure Micromamba is added to your PATH in `.bashrc`:
+
+```bash
+if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' ~/.bashrc; then
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+fi
+```
+
+---
+
+## **Step 4: Initialize Micromamba Shell**
+
+Initialize the shell to enable `micromamba` commands:
+
+```bash
+micromamba shell init -s bash -r ~/.local/micromamba
+```
+
+---
+
+## **Step 5: Update Old Paths (if any)**
+
+If there are old paths in `.bashrc`, replace them with the new path:
+
+```bash
+sed -i 's|/home/zixuan_ye/Downloads/bin/micromamba|/home/zixuan_ye/.local/bin/micromamba|g' ~/.bashrc
+```
+
+---
+
+## **Step 6: Reload Shell Configuration**
+
+Apply the changes by reloading your shell:
+
+```bash
 source ~/.bashrc
+```
 
-# Step 3: Initialize shell
+---
+
+## **Step 7: Run Shell Hook**
+
+Enable Micromamba shell functionalities:
+
+```bash
 eval "$(micromamba shell hook --shell bash)"
 ```
 
-#### How It Works:
+---
 
-1. Downloads `micromamba` and moves it to `~/.local/bin` (standard user path).
-2. Updates `~/.bashrc` to include this path.
-3. Initializes shell with the correct binary path.
+## **Step 8: Verify Installation**
 
-#### Pros:
+Check the Micromamba version to confirm installation:
 
-* Standardized path (`~/.local/bin`), avoids dependency on `~/Downloads`.
-* No infinite loops during `source ~/.bashrc`.
-* Easy cleanup — just delete `~/.local/bin/micromamba`.
-* Follows Linux best practices for user-installed binaries.
+```bash
+micromamba --version
+```
 
-#### Cons:
+---
 
-* Requires a few extra steps to move and configure the path.
-* Users need to be comfortable with `chmod` and `PATH`.
+## **Optional: Create and Activate a Test Environment**
 
+Test the installation by creating and activating a new environment:
 
-### Comparison Table
+```bash
+micromamba create -n test_env python=3.10 -y
+micromamba activate test_env
+```
 
-|                      | Official Method             | Optimized Method                 |
-| -------------------- | --------------------------- | -------------------------------- |
-| Installation Path    | `/Downloads/bin/micromamba` | `~/.local/bin/micromamba`        |
-| Loop Issues          | Possible infinite loops     | Completely avoids loops          |
-| Path Configuration   | Hard-coded, fragile         | Dynamically managed in PATH      |
-| Cleanup Difficulty   | Hard to clean up            | Easy, just delete the binary     |
-| Compatibility        | Might break if moved        | Works seamlessly across sessions |
-| Linux Best Practices | No                          | Yes                              |
+To deactivate the environment, simply run:
 
+```bash
+micromamba deactivate
+```
+
+---
 
 

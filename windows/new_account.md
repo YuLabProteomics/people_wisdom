@@ -25,7 +25,7 @@ Using your main Windows account for SSH login is discouraged for several reasons
 ### 2. Create a new user (e.g., `cecilia`)
 
 ```powershell
-net user cecilia Yezi2098! /add
+net user cecilia Yezi2333! /add
 ````
 
 Note: The password must meet Windows complexity requirements (mixed case, digits, and a symbol).

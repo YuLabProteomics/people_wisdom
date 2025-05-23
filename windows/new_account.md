@@ -15,88 +15,116 @@ Using your main Windows account for SSH login is discouraged for several reasons
 
 ---
 
-## Step-by-Step Guide: Creating a Separate Windows User for SSH
+# Full Guide: Creating a Dedicated Windows User for SSH Login (Public Key Authentication from Mac)
 
-### 1. Open PowerShell as Administrator
+This guide walks you through creating a new local Windows user and configuring SSH key-based login using PowerShell and macOS Terminal.
 
-- Press `Win`, type `PowerShell`
-- Right-click the icon and choose "Run as administrator"
+---
 
-### 2. Create a new user (e.g., `cecilia`)
+## Step 1: Open PowerShell as Administrator
+
+- Press `Win`, search for "PowerShell"
+- Right-click → "Run as administrator"
+
+---
+
+## Step 2: Create a New Local User
 
 ```powershell
 net user cecilia Yezi2333! /add
 ````
 
-Note: The password must meet Windows complexity requirements (mixed case, digits, and a symbol).
+* Replace `cecilia` with your desired username.
+* Replace `Yezi2098!` with a strong password (must contain uppercase, lowercase, digit, and symbol).
+* This creates a local standard user (non-admin).
+
+To verify:
+
+```powershell
+net user
+```
 
 ---
 
-## Configure SSH Access for the New User
-
-### 3. Create the `.ssh` folder and `authorized_keys` file
+## Step 3: Create `.ssh` Folder and `authorized_keys` File
 
 ```powershell
 New-Item -ItemType Directory -Path "C:\Users\cecilia\.ssh" -Force
 notepad C:\Users\cecilia\.ssh\authorized_keys
 ```
 
-Then paste your Mac public key into this file. You can obtain it on your Mac using:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-Save and close the file.
+Paste your Mac public key (output of `cat ~/.ssh/id_ed25519.pub`) into the file, save and close.
 
 ---
 
-### 4. Set Correct Permissions on the Key File
+## Step 4: Set Correct File Permissions
 
 ```powershell
 icacls "C:\Users\cecilia\.ssh\authorized_keys" /inheritance:r
-icacls "C:\Users\cecilia\.ssh\authorized_keys" /grant:r "desktop-<MACHINENAME>\cecilia:F"
+icacls "C:\Users\cecilia\.ssh\authorized_keys" /grant:r "desktop-<MACHINE_NAME>\cecilia:F"
 ```
 
-Replace `<MACHINENAME>` with the actual result of `whoami`, before the backslash.
+Replace `desktop-<MACHINE_NAME>` with the output of `whoami`, up to the backslash.
+
+Example:
+
+If `whoami` outputs:
+
+```
+desktop-8jq74oi\pc
+```
+
+Then use:
+
+```powershell
+icacls "C:\Users\cecilia\.ssh\authorized_keys" /grant:r "desktop-8jq74oi\cecilia:F"
+```
 
 ---
 
-### 5. Restart the SSH Service
+## Step 5: Restart SSH Server
 
 ```powershell
 Restart-Service sshd
 ```
 
+If you haven't installed OpenSSH Server yet, run this first:
+
+```powershell
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+```
+
 ---
 
-## Connecting from Mac
+## Step 6: SSH from Mac
 
-On your Mac, connect using:
+From macOS terminal:
 
 ```bash
 ssh cecilia@<windows-ip>
 ```
 
-Or define a shortcut in your `~/.ssh/config`:
+You can also add a shortcut in `~/.ssh/config`:
 
 ```bash
-Host winpc
-    HostName <windows-ip>
+Host winbox
+    HostName 192.168.1.123
     User cecilia
     IdentityFile ~/.ssh/id_ed25519
     IdentitiesOnly yes
 ```
 
-Then connect using:
+Then just use:
 
 ```bash
-ssh winpc
+ssh winbox
 ```
 
 ---
 
 ## Final Notes
 
-This approach ensures a cleaner, safer, and more maintainable SSH setup, particularly useful when sharing access, auditing activity, or running isolated workflows.
+* You now have a dedicated user account for SSH access.
+* You can safely restrict this user’s permissions further (e.g. limited folders).
+* Avoid exposing your main Windows user (like `pc`) to SSH.
 

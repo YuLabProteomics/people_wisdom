@@ -43,3 +43,31 @@ PowerShell is like the **super version of Command Prompt** — it helps you tell
 
 ---
 
+# PowerShell vs Windows Terminal — What's the Difference?
+
+## TL;DR
+
+| Feature                         | PowerShell                                           | Windows Terminal                                 |
+|---------------------------------|------------------------------------------------------|--------------------------------------------------|
+| What is it?                    | A command-line shell and scripting language          | A terminal emulator for command-line tools       |
+| What does it do?               | Runs commands like `Get-Process`, scripts (.ps1)     | Hosts PowerShell, CMD, WSL, Git Bash, etc.       |
+| Is it standalone?              | Yes                                                 | No (used to run other shells)                    |
+| Use case                       | Scripting, system administration, automation         | Managing multiple command-line environments       |
+
+---
+
+## Key Concept
+
+PowerShell is the tool.  
+Windows Terminal is the container that can host many tools.
+
+Windows Terminal can run PowerShell, CMD, WSL, and more — each in its own tab.
+
+---
+
+## Example
+
+```powershell
+Get-Process
+---
+

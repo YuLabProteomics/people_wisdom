@@ -72,3 +72,63 @@ Get-Process
 ```
 ---
 
+# Which to Use for Coding and Data Processing on Windows: PowerShell or Windows Terminal?
+
+## Quick Comparison
+
+| Task                                      | Recommended Tool     | Reason                                                                 |
+|-------------------------------------------|-----------------------|------------------------------------------------------------------------|
+| Running Python or R scripts               | PowerShell or CMD     | Simple execution of `.py` or `.R` files                               |
+| Managing multiple tasks or environments   | Windows Terminal      | Tabbed interface for parallel workflows                               |
+| Using Git, conda, WSL (Linux), or SSH     | Windows Terminal      | Supports multiple shells and profiles                                 |
+| Automating tasks or scripting             | PowerShell            | Better scripting capabilities than CMD                                |
+| Just running a one-off command or script  | PowerShell            | More modern and powerful than CMD                                     |
+
+---
+
+## Example Use Cases
+
+### Scenario 1: Running a Python script
+
+```powershell
+python analyze.py
+````
+
+PowerShell handles this well. It supports aliases, piping, and works similarly to Unix-style terminals.
+
+### Scenario 2: Working on multiple tasks simultaneously
+
+* Tab 1: `python train_model.py`
+* Tab 2: `Rscript stats_analysis.R`
+* Tab 3: SSH into a remote server
+
+Use **Windows Terminal** to open multiple tabs, each with a different environment (PowerShell, CMD, WSL, etc.).
+
+---
+
+## Summary
+
+**Use PowerShell** for:
+
+* Running scripts
+* Automation
+* System management
+* Daily development tasks
+
+**Use Windows Terminal** when:
+
+* You want to manage multiple environments or sessions
+* You prefer a more modern, customizable terminal interface
+
+Windows Terminal can launch PowerShell, so you can have the best of both worlds.
+
+---
+
+## Optional Enhancements
+
+* Set PowerShell as the default shell in Windows Terminal
+* Create custom profiles that activate virtual environments or open project directories
+* Use Windows Terminal to run and manage Jupyter, conda, or SSH workflows in parallel
+
+---
+

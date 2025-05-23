@@ -69,5 +69,6 @@ Windows Terminal can run PowerShell, CMD, WSL, and more — each in its own tab.
 
 ```powershell
 Get-Process
+```
 ---
 

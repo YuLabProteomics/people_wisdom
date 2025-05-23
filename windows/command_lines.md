@@ -78,3 +78,12 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ---
 
+### Method: Open PowerShell Quickly with Shortcuts
+
+| Action                                             | Shortcut                                 |
+|----------------------------------------------------|------------------------------------------|
+| Open PowerShell (Standard Privileges)              | `Win + R` → type `powershell` → `Enter`  |
+| Open PowerShell (Administrator Privileges)         | `Win + X` → then press `A`               |
+| Quickly Open Terminal Menu (Includes PowerShell)   | `Win + X` → use arrow keys to select `Windows PowerShell` |
+
+---

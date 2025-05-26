@@ -1,5 +1,3 @@
----
-
 # `raw_to_mzml.bat` Usage Guide (with path arguments)
 
 ## File Content (`raw_to_mzml.bat`)

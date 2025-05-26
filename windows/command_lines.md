@@ -87,3 +87,28 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 | Quickly Open Terminal Menu (Includes PowerShell)   | `Win + X` → use arrow keys to select `Windows PowerShell` |
 
 ---
+
+### Finding the IP Address of Windows: Using Command Prompt (Recommended)
+
+1. Press `Win + R` to open the **Run** dialog.
+
+2. Type `cmd` and press **Enter** to open the **Command Prompt**.
+
+3. In the Command Prompt window, type the following command and press **Enter**:
+
+   ```bash
+   ipconfig
+   ```
+
+4. Look for the following section (your network might be named differently):
+
+   ```
+   Wireless LAN adapter Wi-Fi:
+
+      IPv4 Address. . . . . . . . . . . : 192.168.1.101
+   ```
+
+   The line labeled **"IPv4 Address"** shows your local IP address.
+
+---
+

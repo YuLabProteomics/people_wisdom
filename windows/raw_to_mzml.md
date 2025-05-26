@@ -1,6 +1,52 @@
-# `raw_to_mzml.bat` Usage Guide (with path arguments)
+# ProteoWizard CLI + `raw_to_mzml.bat` Usage Guide
 
-## File Content (`raw_to_mzml.bat`)
+This guide explains how to download and set up the ProteoWizard command-line tool (`msconvert.exe`) and how to use a custom batch script (`raw_to_mzml.bat`) to convert Thermo `.raw` files into `.mzML` format.
+
+---
+
+## Part 1: Download and Prepare ProteoWizard (CLI Only)
+
+### Step 1: Download the CLI package
+
+* Go to the official [ProteoWizard GitHub Releases](https://proteowizard.sourceforge.io/download.html)
+* Find and download:
+
+  ```
+  Windows 64-bit tar.bz2 (able to convert vendor files except T2D)
+  ```
+
+  Example filename:
+
+  ```
+  pwiz-bin-windows-x86_64-vc143-release-3_0_25143_fc4aaea.tar.bz2
+  ```
+
+---
+
+### Step 2: Extract the files using 7-Zip
+
+1. Install [7-Zip](https://www.7-zip.org/)
+
+2. Open PowerShell and navigate to the folder where you downloaded the `.tar.bz2` file:
+
+   ```powershell
+   cd "C:\Users\cecilia.DESKTOP-8JQ74OI\Documents\proteowizard"
+   ```
+
+3. Extract the `.tar.bz2` file in two steps:
+
+   ```powershell
+   & "C:\Program Files\7-Zip\7z.exe" x "pwiz-bin-windows-x86_64-...tar.bz2" -aoa
+   & "C:\Program Files\7-Zip\7z.exe" x "pwiz-bin-windows-x86_64-...tar" -aoa
+   ```
+
+4. After extraction, you will find `msconvert.exe` in the extracted folder.
+
+---
+
+## Part 2: Create and Use `raw_to_mzml.bat`
+
+### File Content: `raw_to_mzml.bat`
 
 ```bat
 @echo off
@@ -18,45 +64,91 @@ if "%RAW_DIR%"=="" (
 pause
 ```
 
----
-
-## Method 1: Run from PowerShell or Command Prompt
-
-1. Open PowerShell or CMD.
-
-2. Navigate to the directory where the `.bat` file is located:
-
-   ```powershell
-   cd "C:\Users\cecilia.DESKTOP-8JQ74OI\Documents\01_mldata"
-   ```
-
-3. Run the script with two arguments: the input folder containing `.raw` files and the output folder for `.mzML`:
-
-   ```powershell
-   .\raw_to_mzml.bat "C:\path\to\raw" "C:\path\to\mzML"
-   ```
+Place this `.bat` file somewhere convenient (e.g., in your project folder).
 
 ---
 
-## Method 2: Drag-and-Drop Arguments (GUI method)
+## Part 3: How to Use the Script
 
-1. Drag the input and output folders into the command window after typing the `.bat` file name.
-2. The folder paths will be automatically passed as arguments to the script.
+### Method 1: Run via Terminal (PowerShell or CMD)
+
+```powershell
+cd "C:\path\to\folder\containing\raw_to_mzml.bat"
+.\raw_to_mzml.bat "C:\path\to\raw" "C:\path\to\mzML"
+```
+
+* The first argument is the input directory with `.raw` files
+* The second argument is the output directory for `.mzML` files
+
+---
+
+### Method 2: Drag-and-Drop Style (GUI)
+
+* Drag the `.raw` folder and the output folder onto the `.bat` file or into the command line after calling the script.
+* The script accepts those folders as arguments and runs automatically.
 
 ---
 
 ## Notes
 
-* `%~1` and `%~2` represent the first and second arguments passed to the script.
-* If arguments are missing, the script will print usage instructions and exit.
-* The path to `msconvert.exe` is hardcoded; you may adjust it if the location changes.
-* This script is reusable across multiple projects. Simply pass different folders as arguments without modifying the script itself.
+* `%~1` and `%~2` are the first and second arguments passed to the script.
+* If no arguments are provided, the script will show usage instructions and exit.
+* The path to `msconvert.exe` is hardcoded and should be updated if your directory changes.
+* This script works across projects without modification—just pass different folder paths when running.
 
 ---
 
-# `raw_to_mzml.bat` 使用说明（支持路径参数）
+# ProteoWizard CLI + `raw_to_mzml.bat` 使用说明
 
-## 文件内容（`raw_to_mzml.bat`）
+本教程介绍如何下载和配置 ProteoWizard 的命令行工具 `msconvert.exe`，并通过自定义脚本 `raw_to_mzml.bat` 将 Thermo `.raw` 文件批量转换为 `.mzML` 格式。
+
+---
+
+## 第一部分：下载并准备 ProteoWizard（命令行版本）
+
+### 步骤 1：下载 CLI 压缩包
+
+1. 打开 ProteoWizard 的 GitHub 发布页面：
+   [https://github.com/ProteoWizard/pwiz/releases/latest](https://proteowizard.sourceforge.io/download.html)
+
+2. 下载以下文件（带 tar.bz2 后缀的版本）：
+
+   ```
+   Windows 64-bit tar.bz2 (able to convert vendor files except T2D)
+   ```
+
+   示例文件名：
+
+   ```
+   pwiz-bin-windows-x86_64-vc143-release-3_0_25143_fc4aaea.tar.bz2
+   ```
+
+---
+
+### 步骤 2：使用 7-Zip 解压两次
+
+1. 安装 [7-Zip](https://www.7-zip.org/)
+
+2. 打开 PowerShell，切换到压缩包所在目录，例如：
+
+   ```powershell
+   cd "C:\Users\cecilia.DESKTOP-8JQ74OI\Documents\proteowizard"
+   ```
+
+3. 解压 `.tar.bz2`：
+
+   ```powershell
+   & "C:\Program Files\7-Zip\7z.exe" x "pwiz-bin-...tar.bz2" -aoa
+   & "C:\Program Files\7-Zip\7z.exe" x "pwiz-bin-...tar" -aoa
+   ```
+
+4. 解压完成后，将看到 `msconvert.exe` 所在的文件夹。
+
+---
+
+## 第二部分：编写并使用 `raw_to_mzml.bat` 脚本
+
+### `raw_to_mzml.bat` 文件内容
 
 ```bat
 @echo off
@@ -74,38 +166,36 @@ if "%RAW_DIR%"=="" (
 pause
 ```
 
----
-
-## 使用方式一：命令行调用
-
-1. 打开 PowerShell 或 CMD。
-
-2. 切换到 `.bat` 文件所在目录，例如：
-
-   ```powershell
-   cd "C:\Users\cecilia.DESKTOP-8JQ74OI\Documents\01_mldata"
-   ```
-
-3. 执行转换命令：
-
-   ```powershell
-   .\raw_to_mzml.bat "C:\path\to\raw" "C:\path\to\mzML"
-   ```
-
-   替换路径为你项目实际的原始和输出文件夹。
+你可以将该文件保存为 `raw_to_mzml.bat`，放在项目根目录或任意位置。
 
 ---
 
-## 使用方式二：通过拖拽传参
+## 第三部分：脚本使用方法
 
-1. 将两个文件夹（raw 输入目录 和 mzML 输出目录）拖入命令行窗口。
-2. 将拖入的路径粘贴到命令中作为参数运行，或创建快捷方式以便图形界面使用。
+### 方法一：通过终端（PowerShell 或 CMD）
+
+```powershell
+cd "C:\路径\到\bat文件所在目录"
+.\raw_to_mzml.bat "C:\路径\到\raw文件夹" "C:\路径\到\mzML输出文件夹"
+```
+
+* 第一个参数是 `.raw` 文件所在文件夹
+* 第二个参数是 `.mzML` 输出目录
+
+---
+
+### 方法二：拖拽传参（图形界面方式）
+
+* 将 `.raw` 文件夹 和输出文件夹依次拖入 `.bat` 文件或命令行窗口
+* 系统会自动将路径作为参数传入脚本运行
 
 ---
 
 ## 说明
 
-* `%~1` 和 `%~2` 分别为脚本运行时传入的第一个、第二个参数。
-* 若参数缺失，脚本会提示用法并退出。
-* `msconvert.exe` 路径已写死为解压目录下的固定位置，可根据实际情况调整。
-* 脚本适用于批量项目重用，无需每次修改文件内容。
+* `%~1` 和 `%~2` 分别是传入脚本的第一个和第二个参数
+* 若未提供参数，脚本会提示正确的使用方法并退出
+* `msconvert.exe` 的路径已写死，如有变动请自行修改
+* 脚本可复用于多个项目，只需每次传入不同路径即可，无需修改脚本内容
+
+---

@@ -1,3 +1,26 @@
+# What is ProteoWizard?
+
+**ProteoWizard** is an open-source, cross-platform software toolkit designed for mass spectrometry (MS) data processing. It includes a suite of tools and libraries that support reading, writing, and converting vendor-specific raw data formats into open, standardized formats such as **mzML**, **mzXML**, and **MGF**.
+
+The most widely used component is:
+
+* **`msconvert`** – a command-line and graphical utility used to convert proprietary raw MS files into open formats suitable for downstream analysis.
+
+---
+
+# Why Use ProteoWizard?
+
+| Reason                                         | Description                                                                                                                                                        |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Standardization**                            | Converts vendor-specific `.raw` files to open formats like **mzML**, allowing compatibility with a wide range of downstream tools (e.g., DIA-NN, OpenMS, Skyline). |
+| **Cross-platform support**                     | Works on Windows, Linux, and macOS.                                                                                                                                |
+| **Preprocessing capabilities**                 | Enables operations such as **centroiding**, **peak picking**, scan filtering, and data compression during conversion.                                              |
+| **Scriptable for automation**                  | The `msconvert` command-line tool integrates easily into high-throughput workflows or pipelines.                                                                   |
+| **Open data compatibility**                    | Facilitates data sharing and reuse by transforming data into open formats used across different platforms and research labs.                                       |
+| **Optimized for Linux and analysis pipelines** | Saving files as **mzML** ensures compatibility with Linux-based tools and simplifies integration into reproducible analysis workflows.                             |
+
+---
+
 # ProteoWizard CLI + `raw_to_mzml.bat` Usage Guide
 
 This guide explains how to download and set up the ProteoWizard command-line tool (`msconvert.exe`) and how to use a custom batch script (`raw_to_mzml.bat`) to convert Thermo `.raw` files into `.mzML` format.

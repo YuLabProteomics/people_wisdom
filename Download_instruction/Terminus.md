@@ -3,6 +3,8 @@
 **Terminus** is a modern, cross-platform, open-source terminal emulator. It blends the power of traditional terminals with a sleek GUI, supporting **SSH, SFTP, tabs, splits, themes, and plugins** — like VS Code, but for terminals.
 
 ---
+## Official website
+https://termius.com/pricing
 
 ## 🚀 Key Features of Terminus
 

@@ -1,4 +1,4 @@
-# 🧙‍♂️ Terminus Guide: Overview, SSH Setup, and Comparison with MobaXterm
+# Terminus Guide: Overview, SSH Setup, and Comparison with MobaXterm
 
 **Terminus** is a modern, cross-platform, open-source terminal emulator. It blends the power of traditional terminals with a sleek GUI, supporting **SSH, SFTP, tabs, splits, themes, and plugins** — like VS Code, but for terminals.
 
@@ -6,18 +6,18 @@
 ## Official website
 https://termius.com/pricing
 
-## 🚀 Key Features of Terminus
+## Key Features of Terminus
 
-* 🖥️ **Tabbed and split panes** for multitasking
-* 🔐 **Built-in SSH** client with private key authentication
-* 📂 **Integrated SFTP** file manager with drag-and-drop support
-* 🎨 **Customizable themes and fonts**, including ligature fonts like `Fira Code`
-* 🔌 **Plugin system** with extensible functionality (e.g., command search, terminal snippets)
-* 🌈 **Cross-platform**: Works on Windows, macOS, and Linux
+* **Tabbed and split panes** for multitasking
+* **Built-in SSH** client with private key authentication
+* **Integrated SFTP** file manager with drag-and-drop support
+* **Customizable themes and fonts**, including ligature fonts like `Fira Code`
+* **Plugin system** with extensible functionality (e.g., command search, terminal snippets)
+* **Cross-platform**: Works on Windows, macOS, and Linux
 
 ---
 
-## 🔗 How to Set Up an SSH Connection in Terminus
+## How to Set Up an SSH Connection in Terminus
 
 All you need are the following details:
 
@@ -28,7 +28,7 @@ All you need are the following details:
 | **Private Key**   | `~/.ssh/id_ed25519_yulab` | Path to your SSH private key              |
 | **Label**         | `Wanglab Server`          | A nickname to identify the connection     |
 
-### ✅ Steps:
+### Steps:
 
 1. Open Terminus → Click `Hosts` on the sidebar
 2. Click `+ NEW HOST`
@@ -38,7 +38,7 @@ All you need are the following details:
 
 ---
 
-## 🔁 Terminus vs MobaXterm – Side-by-Side Comparison
+## Terminus vs MobaXterm – Side-by-Side Comparison
 
 | Feature                  | **Terminus**                   | **MobaXterm**                                   |
 | ------------------------ | ------------------------------ | ----------------------------------------------- |
@@ -54,7 +54,7 @@ All you need are the following details:
 
 ---
 
-## 🧠 Who Should Use Terminus?
+## Who Should Use Terminus?
 
 * Researchers, developers, and engineers managing **multiple remote servers**
 * Anyone who enjoys **customizable, modern terminal environments**
@@ -62,7 +62,7 @@ All you need are the following details:
 
 ---
 
-## 🔚 Summary
+## Summary
 
 > **Terminus = Beautiful UI + Efficient Workflow + Power Features.**
 > It’s more lightweight and customizable than MobaXterm, and perfect for users who want a modern terminal with built-in SSH, SFTP, and plugin support.

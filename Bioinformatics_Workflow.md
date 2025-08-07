@@ -194,3 +194,38 @@ This will:
 
 ---
 
+## 6. How to Back Up Your Data (Safely, Automatically, and Cleanly)
+
+### 🧬 What to Back Up
+
+| Type               | Location                                                   | Strategy                    |
+|--------------------|------------------------------------------------------------|-----------------------------|
+| Code               | GitHub repo                                                | Use `git push` regularly    |
+| Data (raw/intermediate) | External hard drive (e.g. `D:/research_backup`) and cloud copy | Use `rsync`, nightly schedule |
+
+---
+
+### 🕐 Automate with Cron (every day at 2:00 AM)
+
+Edit your crontab by running:
+
+```bash
+crontab -e
+```
+
+Then add this line at the bottom:
+
+```cron
+0 2 * * * bash /home/zixuan/scripts/cron_backup.sh
+```
+
+---
+
+### ✅ This setup will:
+
+* Back up your entire code and data every night
+* Store backups in **two separate drives**
+* Automatically clean backups older than **2 weeks**
+* Let you sleep peacefully knowing everything is versioned and protected
+
+

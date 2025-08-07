@@ -203,7 +203,6 @@ This will:
 | Code               | GitHub repo                                                | Use `git push` regularly    |
 | Data (raw/intermediate) | External hard drive (e.g. `D:/research_backup`) and cloud copy | Use `rsync`, nightly schedule |
 
----
 
 ### 🕐 Automate with Cron (every day at 2:00 AM)
 
@@ -218,8 +217,6 @@ Then add this line at the bottom:
 ```cron
 0 2 * * * bash /home/zixuan/scripts/cron_backup.sh
 ```
-
----
 
 ### ✅ This setup will:
 
